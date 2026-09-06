@@ -7,6 +7,7 @@ import {
   getAgentIcon,
   getAgentColor,
 } from "@/lib/utils";
+import ICONS, { SEVERITY_ICONS } from "@/components/icons";
 import {
   getRiskDetail,
   getSceneRiskData,
@@ -144,10 +145,7 @@ const CriticalIssuesFeed = ({
                 className="flex-shrink-0 text-xl"
                 style={{ color: issueSeverityColors[issue.severity] || "var(--text-muted)" }}
               >
-                {issue.severity === "critical" && "🚨"}
-                {issue.severity === "high" && "⚠️"}
-                {issue.severity === "medium" && "🔶"}
-                {issue.severity === "low" && "✅"}
+                {SEVERITY_ICONS[issue.severity] || SEVERITY_ICONS.low}
               </span>
               <div className="flex-grow">
                 <p className="font-medium" style={{ color: "var(--text)" }}>
@@ -307,7 +305,7 @@ export function RiskDashboard({ reportId }: RiskDashboardProps) {
     >
       <div className="flex items-center justify-between border-b pb-4 mb-4 border-gray-200 dark:border-gray-700">
         <h3 className="text-2xl font-bold" style={{ color: "var(--text)" }}>
-          📊 Real-Time Risk Monitor
+          {ICONS.chart} Real-Time Risk Monitor
         </h3>
         <span className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
           <span className="relative flex h-3 w-3">

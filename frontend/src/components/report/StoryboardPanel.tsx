@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ICON from "@/components/icons";
 
 interface StoryboardFrame {
   scene_number: number;
@@ -72,7 +73,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-white">
-            🎬 AI Storyboard
+            {ICON.film} AI Storyboard
           </h3>
           <p className="text-sm text-gray-400">
             Cinematic visuals generated for each scene using Imagen 4
@@ -83,7 +84,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
             onClick={generateStoryboard}
             className="rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-2 text-sm font-medium text-white shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all"
           >
-            ✨ Generate Storyboard
+            {ICON.star} Generate Storyboard
           </button>
         )}
         {storyboard && (
@@ -91,7 +92,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
             onClick={generateStoryboard}
             className="rounded-lg border border-gray-600 bg-gray-800 px-3 py-1.5 text-sm font-medium text-gray-300 hover:bg-gray-700"
           >
-            🔄 Regenerate
+            {ICON.refresh} Regenerate
           </button>
         )}
       </div>
@@ -135,15 +136,15 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
           {/* Stats Bar */}
           <div className="mb-6 flex items-center gap-4 text-sm">
             <span className="flex items-center gap-1.5 text-gray-400">
-              🖼️ <strong>{storyboard.successful_frames}</strong> frames generated
+              {ICON.photo} <strong>{storyboard.successful_frames}</strong> frames generated
             </span>
             {storyboard.failed_frames > 0 && (
               <span className="flex items-center gap-1.5 text-amber-400">
-                ⚠️ <strong>{storyboard.failed_frames}</strong> failed
+                {ICON.alert} <strong>{storyboard.failed_frames}</strong> failed
               </span>
             )}
             <span className="text-gray-500">
-              ⏱️ {storyboard.processing_time.toFixed(1)}s
+              {ICON.clock} {storyboard.processing_time.toFixed(1)}s
             </span>
           </div>
 
@@ -228,7 +229,7 @@ function StoryboardCard({
         {/* Hover Overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
           <span className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-medium text-gray-900 opacity-0 transition-opacity group-hover:opacity-100">
-            🔍 View Full
+            {ICON.eye} View Full
           </span>
         </div>
       </div>
@@ -242,7 +243,7 @@ function StoryboardCard({
           {frame.description}
         </p>
         <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
-          <span>📷 {frame.camera_angle}</span>
+          <span>{ICON.photo} {frame.camera_angle}</span>
         </div>
       </div>
     </div>
@@ -254,7 +255,7 @@ function FailedFrameCard({ frame }: { frame: StoryboardFrame }) {
     <div className="overflow-hidden rounded-xl border border-amber-800 bg-amber-900/20 p-4">
       <div className="flex items-start gap-3">
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-900/50">
-          <span className="text-sm">⚠️</span>
+          <span className="text-sm">{ICON.alert}</span>
         </div>
         <div className="flex-1 min-w-0">
           <h4 className="text-sm font-medium text-amber-200">
@@ -329,7 +330,7 @@ function LightboxModal({
           {/* Visual Prompt (collapsible) */}
           <details className="mt-4 group">
             <summary className="cursor-pointer text-xs font-medium text-gray-400 hover:text-gray-200 transition-colors">
-              📝 Visual Prompt Used
+              {ICON.pencil} Visual Prompt Used
             </summary>
             <p className="mt-2 rounded-lg bg-gray-800 p-3 text-xs text-gray-300 leading-relaxed">
               {frame.visual_prompt}

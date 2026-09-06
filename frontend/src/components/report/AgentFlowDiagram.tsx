@@ -1,31 +1,32 @@
 "use client";
 
 import type { AgentFlowStep } from "@/lib/types";
+import { AGENT_ICONS } from "@/components/icons";
 
 const agentConfig: Record<
   string,
-  { icon: string; label: string; color: string; borderColor: string }
+  { icon: React.ReactNode; label: string; color: string; borderColor: string }
 > = {
   director: {
-    icon: "🎬",
+    icon: AGENT_ICONS.director,
     label: "Director",
     color: "bg-blue-50 dark:bg-blue-900/20",
     borderColor: "border-blue-300 dark:border-blue-700",
   },
   research: {
-    icon: "🔍",
+    icon: AGENT_ICONS.research,
     label: "Research",
     color: "bg-emerald-50 dark:bg-emerald-900/20",
     borderColor: "border-emerald-300 dark:border-emerald-700",
   },
   legal: {
-    icon: "⚖️",
+    icon: AGENT_ICONS.legal,
     label: "Legal",
     color: "bg-amber-50 dark:bg-amber-900/20",
     borderColor: "border-amber-300 dark:border-amber-700",
   },
   continuity: {
-    icon: "🔗",
+    icon: AGENT_ICONS.continuity,
     label: "Continuity",
     color: "bg-purple-50 dark:bg-purple-900/20",
     borderColor: "border-purple-300 dark:border-purple-700",

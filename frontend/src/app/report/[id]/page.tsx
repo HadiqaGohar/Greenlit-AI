@@ -20,6 +20,7 @@ import { ScriptChat } from "@/components/ScriptChat";
 import { RiskHeatmap } from "@/components/RiskHeatmap";
 import { BudgetEstimator } from "@/components/report/BudgetEstimator";
 import { CulturalSensitivityScanner } from "@/components/report/CulturalSensitivityScanner";
+import { ICONS } from "@/components/icons";
 import { getReport, ApiError } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 import type { AnalyzeResponse, Verdict } from "@/lib/types";
@@ -134,7 +135,7 @@ export default function ReportPage({ params }: ReportPageProps) {
             onClick={() => setShowExportModal(true)}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
-            <span>📥</span> Export Report
+            <span className="mr-1.5">{ICONS.upload}</span> Export Report
           </button>
         </div>
       </div>
@@ -152,7 +153,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                📊 Readiness Score
+                <span className="mr-1.5">{ICONS.chart}</span> Readiness Score
               </button>
             )}
             {hasTimeline && (
@@ -164,7 +165,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                ▶ Agent Replay
+                <span className="mr-1.5">{ICONS.play}</span> Agent Replay
               </button>
             )}
             {hasFlow && (
@@ -176,7 +177,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                🔗 Agent Pipeline
+                <span className="mr-1.5">{ICONS.link}</span> Agent Pipeline
               </button>
             )}
             {hasSuggestions && (
@@ -188,7 +189,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                💡 Suggestions ({report.suggestions!.length})
+                <span className="mr-1.5">{ICONS.lightBulb}</span> Suggestions ({report.suggestions!.length})
               </button>
             )}
             {hasScenes && (
@@ -200,7 +201,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                🎬 Scenes
+                <span className="mr-1.5">{ICONS.film}</span> Scenes
               </button>
             )}
             {hasCharacters && (
@@ -212,7 +213,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                👥 Characters
+                <span className="mr-1.5">{ICONS.users}</span> Characters
               </button>
             )}
             {hasLegalIssues && (
@@ -224,7 +225,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                     : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
               >
-                📋 Legal Checklist
+                <span className="mr-1.5">{ICONS.clipboard}</span> Legal Checklist
               </button>
             )}
             <button
@@ -235,7 +236,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                   : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
               }`}
             >
-              💬 Ask the Script
+              <span className="mr-1.5">{ICONS.chat}</span> Ask the Script
             </button>
             <button
               onClick={() => setActiveExtra(activeExtra === "heatmap" ? null : "heatmap")}
@@ -245,7 +246,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                   : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
               }`}
             >
-              🗺️ Risk Heatmap
+              <span className="mr-1.5">{ICONS.globe}</span> Risk Heatmap
             </button>
             <button
               onClick={() => setActiveExtra(activeExtra === "budget" ? null : "budget")}
@@ -255,7 +256,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                   : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
               }`}
             >
-              💰 Budget Estimate
+              <span className="mr-1.5">{ICONS.dollar}</span> Budget Estimate
             </button>
             <button
               onClick={() => setActiveExtra(activeExtra === "cultural" ? null : "cultural")}
@@ -265,7 +266,7 @@ export default function ReportPage({ params }: ReportPageProps) {
                   : "border border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
               }`}
             >
-              🌍 Cultural Sensitivity
+              <span className="mr-1.5">{ICONS.globe}</span> Cultural Sensitivity
             </button>
           </div>
         </div>

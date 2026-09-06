@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { DollarSign, AlertTriangle, Lightbulb, TrendingUp, TrendingDown } from "lucide-react";
+import ICON from "@/components/icons";
 import { BarChart, BarChartData } from "../charts/BarChart";
 import { trackBudget, type BudgetTrackingResponse, type BudgetTrackingCategory } from "@/lib/api";
 
@@ -88,7 +89,7 @@ export function BudgetTrackerPanel({ reportId }: BudgetTrackerPanelProps) {
             className="px-3 py-1.5 rounded-lg text-sm font-medium"
             style={{ backgroundColor: "var(--bg)", color: "var(--text)", border: "1px solid var(--border)" }}
           >
-            🔄 Re-track
+            {ICON.refresh} Re-track
           </button>
         )}
       </div>

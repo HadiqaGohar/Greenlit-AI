@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ICON from "@/components/icons";
 
 interface ScheduleScene {
   scene_number: number;
@@ -120,7 +121,7 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            📅 Production Schedule
+            {ICON.calendar} Production Schedule
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             AI-optimized day-by-day shooting schedule
@@ -131,7 +132,7 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
             onClick={generateSchedule}
             className="rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 px-4 py-2 text-sm font-medium text-white shadow-lg hover:from-amber-700 hover:to-orange-700 transition-all"
           >
-            📋 Generate Schedule
+            {ICON.clipboard} Generate Schedule
           </button>
         )}
         {schedule && (
@@ -139,7 +140,7 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
             onClick={generateSchedule}
             className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
           >
-            🔄 Regenerate
+            {ICON.refresh} Regenerate
           </button>
         )}
       </div>
@@ -175,19 +176,19 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
           {/* Stats */}
           <div className="mb-4 flex flex-wrap items-center gap-4 text-sm">
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              🎬 <strong>{schedule.total_shoot_days}</strong> shoot days
+              {ICON.film} <strong>{schedule.total_shoot_days}</strong> shoot days
             </span>
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              📄 {schedule.total_pages} pages
+              {ICON.document} {schedule.total_pages} pages
             </span>
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              🚚 {schedule.company_moves_total} company moves
+              {ICON.truck} {schedule.company_moves_total} company moves
             </span>
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              🛡️ +{schedule.contingency_days} contingency
+              {ICON.shield} +{schedule.contingency_days} contingency
             </span>
             <span className="text-gray-400">
-              ⚡ {schedule.processing_time.toFixed(1)}s
+              {ICON.bolt} {schedule.processing_time.toFixed(1)}s
             </span>
           </div>
 
@@ -203,10 +204,10 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
                     : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
                 }`}
               >
-                {v === "days" && "📅 Day by Day"}
-                {v === "stripboard" && "🎯 Stripboard"}
-                {v === "cast" && "🎭 Cast Grid"}
-                {v === "locations" && "📍 Locations"}
+                {v === "days" && <>{ICON.calendar} Day by Day</>}
+                {v === "stripboard" && <>{ICON.grid} Stripboard</>}
+                {v === "cast" && <>{ICON.users} Cast Grid</>}
+                {v === "locations" && <>{ICON.mapPin} Locations</>}
               </button>
             ))}
           </div>
@@ -272,7 +273,7 @@ export function SchedulePanel({ reportId }: SchedulePanelProps) {
           {schedule.optimization_notes.length > 0 && (
             <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
               <h4 className="mb-2 text-sm font-semibold text-blue-800 dark:text-blue-200">
-                💡 Optimization Notes
+                {ICON.lightBulb} Optimization Notes
               </h4>
               <ul className="space-y-1">
                 {schedule.optimization_notes.map((note, i) => (
@@ -325,8 +326,8 @@ function DayCard({ day, expanded, onToggle }: { day: ShootDay; expanded: boolean
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-          <span>📍 {day.locations.length}</span>
-          <span>🎭 {day.cast_required.length}</span>
+          <span>{ICON.mapPin} {day.locations.length}</span>
+          <span>{ICON.users} {day.cast_required.length}</span>
           <svg className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
@@ -336,7 +337,7 @@ function DayCard({ day, expanded, onToggle }: { day: ShootDay; expanded: boolean
       {expanded && (
         <div className="border-t border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800/50">
           <div className="mb-2 text-xs text-gray-500 dark:text-gray-400">
-            📍 Locations: {day.locations.join(", ")}
+            {ICON.mapPin} Locations: {day.locations.join(", ")}
           </div>
           <div className="space-y-1">
             {day.scenes.map((scene) => (

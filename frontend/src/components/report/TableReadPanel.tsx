@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import ICON from "@/components/icons";
 
 interface TTSScene {
   scene_number: number;
@@ -209,7 +210,7 @@ export function TableReadPanel({ reportId }: TableReadPanelProps) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            🎙️ Table Read
+            {ICON.microphone} Table Read
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             AI-generated multi-voice read-through of your script
@@ -220,7 +221,7 @@ export function TableReadPanel({ reportId }: TableReadPanelProps) {
             onClick={generateTTS}
             className="rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-lg hover:from-green-700 hover:to-emerald-700 transition-all"
           >
-            🎤 Generate Table Read
+            {ICON.microphone} Generate Table Read
           </button>
         )}
         {tts && (
@@ -228,7 +229,7 @@ export function TableReadPanel({ reportId }: TableReadPanelProps) {
             onClick={generateTTS}
             className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
-            🔄 Regenerate
+            {ICON.refresh} Regenerate
           </button>
         )}
       </div>
@@ -272,13 +273,13 @@ export function TableReadPanel({ reportId }: TableReadPanelProps) {
           {/* Stats Bar */}
           <div className="mb-4 flex items-center gap-4 text-sm">
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              🎵 <strong>{tts.successful_scenes}</strong> scenes
+              {ICON.music} <strong>{tts.successful_scenes}</strong> scenes
             </span>
             <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
-              ⏱️ {formatTime(totalDuration)} total
+              {ICON.clock} {formatTime(totalDuration)} total
             </span>
             <span className="text-gray-400 dark:text-gray-500">
-              ⚡ {tts.processing_time.toFixed(1)}s
+              {ICON.bolt} {tts.processing_time.toFixed(1)}s
             </span>
           </div>
 
@@ -354,7 +355,7 @@ export function TableReadPanel({ reportId }: TableReadPanelProps) {
               <div className="mt-3 flex items-center gap-4 text-sm">
                 {/* Volume */}
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 dark:text-gray-400">🔊</span>
+                  <span className="text-gray-500 dark:text-gray-400">{ICON.speaker}</span>
                   <input
                     type="range"
                     min="0"

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Globe, ChevronDown, ChevronUp, CheckCircle } from "lucide-react";
+import ICON from "@/components/icons";
 
 interface CulturalIssue {
   category: string;
@@ -224,7 +225,7 @@ export function CulturalSensitivityScanner({ scriptText }: CulturalSensitivitySc
               <h4 className="font-medium text-sm mb-2" style={{ color: "var(--verified)" }}>Positive Representations</h4>
               <ul className="space-y-1">
                 {data.positive_representations.map((item, i) => (
-                  <li key={i} className="text-sm" style={{ color: "var(--text-muted)" }}>✓ {item}</li>
+                  <li key={i} className="text-sm" style={{ color: "var(--text-muted)" }}>{ICON.check} {item}</li>
                 ))}
               </ul>
             </div>

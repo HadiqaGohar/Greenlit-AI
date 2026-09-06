@@ -1,12 +1,13 @@
 "use client";
 
 import type { ReadinessScore } from "@/lib/types";
+import ICON from "@/components/icons";
 
 const dimensions = [
-  { key: "legal_clearance", label: "Legal", icon: "⚖️" },
-  { key: "historical_accuracy", label: "Accuracy", icon: "📜" },
-  { key: "continuity", label: "Continuity", icon: "🔗" },
-  { key: "budget_feasibility", label: "Budget", icon: "💰" },
+  { key: "legal_clearance", label: "Legal", icon: ICON.shield },
+  { key: "historical_accuracy", label: "Accuracy", icon: ICON.document },
+  { key: "continuity", label: "Continuity", icon: ICON.link },
+  { key: "budget_feasibility", label: "Budget", icon: ICON.dollar },
 ] as const;
 
 const gradeColors: Record<string, string> = {

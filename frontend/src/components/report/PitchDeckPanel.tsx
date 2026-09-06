@@ -4,22 +4,23 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Presentation, ChevronLeft, ChevronRight, Download, Sparkles } from "lucide-react";
 import { generatePitchDeck, type PitchDeckResponse } from "@/lib/api";
+import ICON from "@/components/icons";
 
 interface PitchDeckPanelProps {
   reportId: string;
 }
 
-const SLIDE_ICONS: Record<string, string> = {
-  Logline: "🎯",
-  Synopsis: "📝",
-  "Genre & Tone": "🎬",
-  "Key Characters": "👥",
-  Themes: "💡",
-  "Visual Style": "🎨",
-  "Target Audience": "🎯",
-  "Comparable Films": "🎞️",
-  "Production Scale": "🏗️",
-  "Risks & Opportunities": "⚠️",
+const SLIDE_ICONS: Record<string, React.ReactNode> = {
+  Logline: ICON.bolt,
+  Synopsis: ICON.pencil,
+  "Genre & Tone": ICON.film,
+  "Key Characters": ICON.users,
+  Themes: ICON.lightBulb,
+  "Visual Style": ICON.paint,
+  "Target Audience": ICON.bolt,
+  "Comparable Films": ICON.film,
+  "Production Scale": ICON.grid,
+  "Risks & Opportunities": ICON.alert,
 };
 
 export function PitchDeckPanel({ reportId }: PitchDeckPanelProps) {
@@ -90,7 +91,7 @@ export function PitchDeckPanel({ reportId }: PitchDeckPanelProps) {
               className="px-3 py-1.5 rounded-lg text-sm font-medium"
               style={{ backgroundColor: "var(--bg)", color: "var(--text)", border: "1px solid var(--border)" }}
             >
-              🔄 Regenerate
+              {ICON.refresh} Regenerate
             </button>
           </div>
         )}
@@ -133,7 +134,7 @@ export function PitchDeckPanel({ reportId }: PitchDeckPanelProps) {
                 className="w-full"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-3xl">{SLIDE_ICONS[current.title] || "📌"}</span>
+                  <span className="text-3xl">{SLIDE_ICONS[current.title] || ICON.mapPin}</span>
                   <h4 className="text-2xl font-bold" style={{ color: "var(--text)" }}>{current.title}</h4>
                 </div>
                 <ul className="space-y-2">

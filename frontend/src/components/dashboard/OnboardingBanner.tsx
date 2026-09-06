@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useOnboardingProgress } from '@/hooks/useSampleLoader';
+import ICON from '@/components/icons';
 
 interface OnboardingBannerProps {
   onStartTour: () => void;
@@ -22,7 +23,7 @@ export default function OnboardingBanner({ onStartTour }: OnboardingBannerProps)
     <div className="mb-8 p-6 rounded-lg border-2 border-dashed border-blue-200 bg-blue-50">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <div className="text-3xl mb-3">🎬</div>
+          <div className="text-3xl mb-3">{ICON.film}</div>
           <h2 className="text-xl font-bold text-blue-900 mb-2">
             Welcome to Greenlit AI!
           </h2>

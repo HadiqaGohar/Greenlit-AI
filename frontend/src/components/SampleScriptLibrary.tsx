@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SAMPLE_SCRIPTS } from "@/lib/sampleData";
+import ICON from "@/components/icons";
 
-const genreIcons: Record<string, string> = {
-  "Action/Thriller": "💥",
-  "Period Drama": "📜",
-  "Science Fiction": "🚀",
+const genreIcons: Record<string, React.ReactNode> = {
+  "Action/Thriller": ICON.fire,
+  "Period Drama": ICON.document,
+  "Science Fiction": ICON.bolt,
 };
 
 const statusColors: Record<string, string> = {
@@ -45,7 +46,7 @@ export function SampleScriptLibrary() {
             >
               {/* Header */}
               <div className="mb-3 flex items-start justify-between">
-                <span className="text-3xl">{genreIcons[script.genre] || "🎬"}</span>
+                <span className="text-3xl">{genreIcons[script.genre] || ICON.film}</span>
                 <span
                   className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                     statusColors[script.status]
@@ -108,19 +109,19 @@ export function SampleScriptLibrary() {
                   </h4>
                   <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
                     <p>
-                      ✓ {script.analysisResults.overview.verifiedClaims} claims
+                      {ICON.check} {script.analysisResults.overview.verifiedClaims} claims
                       verified
                     </p>
                     <p>
-                      ✗ {script.analysisResults.overview.flaggedClaims} claims
+                      {ICON.cross} {script.analysisResults.overview.flaggedClaims} claims
                       flagged
                     </p>
                     <p>
-                      ⚖️ {script.analysisResults.legal.length} legal issues
+                      {ICON.shield} {script.analysisResults.legal.length} legal issues
                       found
                     </p>
                     <p>
-                      🔗 {script.analysisResults.continuity.length} continuity
+                      {ICON.link} {script.analysisResults.continuity.length} continuity
                       issues
                     </p>
                   </div>

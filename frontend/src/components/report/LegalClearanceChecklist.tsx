@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ICON from "@/components/icons";
 
 interface ClearanceItem {
   id: string;
@@ -16,13 +17,13 @@ interface LegalClearanceChecklistProps {
   items: ClearanceItem[];
 }
 
-const typeIcons: Record<string, string> = {
-  copyright: "©️",
-  trademark: "™️",
-  location: "📍",
-  person: "👤",
-  music: "🎵",
-  other: "📋",
+const typeIcons: Record<string, React.ReactNode> = {
+  copyright: ICON.tag,
+  trademark: ICON.tag,
+  location: ICON.mapPin,
+  person: ICON.user,
+  music: ICON.music,
+  other: ICON.clipboard,
 };
 
 const severityColors: Record<string, string> = {

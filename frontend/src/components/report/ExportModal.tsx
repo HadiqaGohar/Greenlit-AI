@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createExport, createShareLink } from "@/lib/api";
+import ICON from "@/components/icons";
 
 interface ExportModalProps {
   scriptId: string;
@@ -22,8 +23,8 @@ const sectionOptions = [
   { id: "continuity", label: "Continuity", desc: "Timeline, character issues" },
 ];
 
-const formatOptions: { id: ExportFormat; label: string; icon: string; desc: string }[] = [
-  { id: "pdf", label: "PDF", icon: "📄", desc: "Professional report document" },
+const formatOptions: { id: ExportFormat; label: string; icon: React.ReactNode; desc: string }[] = [
+  { id: "pdf", label: "PDF", icon: ICON.document, desc: "Professional report document" },
 ];
 
 export function ExportModal({ scriptId, userId, isOpen, onClose, report }: ExportModalProps) {
@@ -101,7 +102,7 @@ export function ExportModal({ scriptId, userId, isOpen, onClose, report }: Expor
               tab === "export" ? "bg-white text-gray-900 shadow dark:bg-gray-700 dark:text-gray-100" : "text-gray-500"
             }`}
           >
-            📥 Export File
+            {ICON.upload} Export File
           </button>
           <button
             onClick={() => setTab("share")}
@@ -109,7 +110,7 @@ export function ExportModal({ scriptId, userId, isOpen, onClose, report }: Expor
               tab === "share" ? "bg-white text-gray-900 shadow dark:bg-gray-700 dark:text-gray-100" : "text-gray-500"
             }`}
           >
-            🔗 Share Link
+            {ICON.link} Share Link
           </button>
         </div>
 

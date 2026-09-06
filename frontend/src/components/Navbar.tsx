@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Sun, Moon, Bell, User, Settings } from 'lucide-react';
+import { Sun, Moon, Bell, User, Settings, Clapperboard } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { getNotifications } from '@/lib/api';
 
@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🎬</span>
+            <Clapperboard size={24} />
             <span className="font-display font-bold text-lg" style={{ color: 'var(--text)' }}>
               GreenLit AI
             </span>

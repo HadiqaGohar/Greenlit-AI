@@ -1,6 +1,7 @@
 "use client";
 
 import type { AgentResult, AgentType } from "@/lib/types";
+import { ICONS, AGENT_ICONS } from "@/components/icons";
 
 interface OverviewPanelProps {
   riskScore: number;
@@ -12,16 +13,16 @@ interface OverviewPanelProps {
   claimsCount: number;
 }
 
-const agentLabels: Record<string, { name: string; icon: string; description: string }> = {
-  director: { name: "Director", icon: "🎬", description: "Script analysis & claim extraction" },
-  research: { name: "Research", icon: "🔍", description: "Fact verification & source finding" },
-  legal: { name: "Legal", icon: "⚖️", description: "Clearance & rights analysis" },
-  continuity: { name: "Continuity", icon: "🔗", description: "Timeline & consistency checking" },
-  storyboard: { name: "Storyboard", icon: "🖼️", description: "Visual storyboard generation" },
-  tts: { name: "Table Read", icon: "🎙️", description: "Multi-voice audio table read" },
-  schedule: { name: "Schedule", icon: "📅", description: "Production shooting schedule" },
-  stakeholder: { name: "Stakeholders", icon: "🏢", description: "Multi-stakeholder analysis" },
-  "risk-dashboard": { name: "Risk Dashboard", icon: "📊", description: "Real-time risk monitoring" },
+const agentLabels: Record<string, { name: string; icon: React.ReactNode; description: string }> = {
+  director: { name: "Director", icon: AGENT_ICONS.director, description: "Script analysis & claim extraction" },
+  research: { name: "Research", icon: AGENT_ICONS.research, description: "Fact verification & source finding" },
+  legal: { name: "Legal", icon: AGENT_ICONS.legal, description: "Clearance & rights analysis" },
+  continuity: { name: "Continuity", icon: AGENT_ICONS.continuity, description: "Timeline & consistency checking" },
+  storyboard: { name: "Storyboard", icon: AGENT_ICONS.storyboard, description: "Visual storyboard generation" },
+  tts: { name: "Table Read", icon: AGENT_ICONS.tts, description: "Multi-voice audio table read" },
+  schedule: { name: "Schedule", icon: AGENT_ICONS.schedule, description: "Production shooting schedule" },
+  stakeholder: { name: "Stakeholders", icon: AGENT_ICONS.stakeholder, description: "Multi-stakeholder analysis" },
+  "risk-dashboard": { name: "Risk Dashboard", icon: AGENT_ICONS["risk-dashboard"], description: "Real-time risk monitoring" },
 };
 
 export function OverviewPanel({
@@ -48,10 +49,10 @@ export function OverviewPanel({
     <div className="space-y-6">
       {/* Summary stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <StatCard label="Claims Found" value={String(claimsCount)} icon="📋" />
-        <StatCard label="Risk Score" value={`${Math.round(riskScore)}`} icon="🎯" color={riskLevel} />
-        <StatCard label="Avg Confidence" value={`${Math.round(avgConfidence * 100)}%`} icon="📊" />
-        <StatCard label="Processing Time" value={`${processingTime.toFixed(1)}s`} icon="⏱️" />
+        <StatCard label="Claims Found" value={String(claimsCount)} icon={ICONS.clipboard} />
+        <StatCard label="Risk Score" value={`${Math.round(riskScore)}`} icon={ICONS.lightBulb} color={riskLevel} />
+        <StatCard label="Avg Confidence" value={`${Math.round(avgConfidence * 100)}%`} icon={ICONS.chart} />
+        <StatCard label="Processing Time" value={`${processingTime.toFixed(1)}s`} icon={ICONS.clock} />
       </div>
 
       {/* Agent Results */}
@@ -72,7 +73,7 @@ export function OverviewPanel({
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{info.icon}</span>
+                  <span className="text-2xl flex-shrink-0">{info.icon}</span>
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       {info.name}
@@ -165,13 +166,13 @@ function StatCard({
 }: {
   label: string;
   value: string;
-  icon: string;
+  icon: React.ReactNode;
   color?: string;
 }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
       <div className="flex items-center gap-2">
-        <span className="text-lg">{icon}</span>
+        <span className="text-lg flex-shrink-0">{icon}</span>
         <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
       </div>
       <p className="mt-2 text-2xl font-bold text-gray-900 dark:text-gray-100">{value}</p>

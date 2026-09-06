@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ICON from "@/components/icons";
 
 interface StakeholderFinding {
   category: string;
@@ -106,7 +107,7 @@ export function StakeholderPanel({ reportId }: StakeholderPanelProps) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            🏢 Multi-Stakeholder Analysis
+            {ICON.building} Multi-Stakeholder Analysis
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             See your script through the eyes of 8 production stakeholders
@@ -117,7 +118,7 @@ export function StakeholderPanel({ reportId }: StakeholderPanelProps) {
             onClick={runAnalysis}
             className="rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2 text-sm font-medium text-white shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all"
           >
-            🏢 Analyze Stakeholders
+            {ICON.building} Analyze Stakeholders
           </button>
         )}
         {data && (
@@ -125,7 +126,7 @@ export function StakeholderPanel({ reportId }: StakeholderPanelProps) {
             onClick={runAnalysis}
             className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
           >
-            🔄 Re-analyze
+            {ICON.refresh} Re-analyze
           </button>
         )}
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ICON from "@/components/icons";
 
 interface Character {
   name: string;
@@ -24,11 +25,11 @@ const typeColors: Record<string, string> = {
   background: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
 };
 
-const typeIcons: Record<string, string> = {
-  lead: "⭐",
-  supporting: "🎭",
-  recurring: "👤",
-  background: "👥",
+const typeIcons: Record<string, React.ReactNode> = {
+  lead: ICON.star,
+  supporting: ICON.film,
+  recurring: ICON.user,
+  background: ICON.users,
 };
 
 export function CharacterBible({ characters }: CharacterBibleProps) {
@@ -167,7 +168,7 @@ export function CharacterBible({ characters }: CharacterBibleProps) {
             {leads.map((char) => (
               <div key={char.name} className="text-center">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 text-2xl dark:bg-purple-900/30">
-                  ⭐
+                  {ICON.star}
                 </div>
                 <p className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
                   {char.name}
@@ -189,7 +190,7 @@ export function CharacterBible({ characters }: CharacterBibleProps) {
                 {supporting.map((char) => (
                   <div key={char.name} className="text-center">
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-xl dark:bg-blue-900/30">
-                      🎭
+                      {ICON.film}
                     </div>
                     <p className="mt-1 text-xs font-medium text-gray-900 dark:text-white">
                       {char.name}

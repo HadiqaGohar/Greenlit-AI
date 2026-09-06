@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ICON from "@/components/icons";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -108,7 +109,7 @@ export function ScriptChat({ reportId, scriptText }: ScriptChatProps) {
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-800">
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900">
-          <span className="text-xl">🎬</span>
+          <span className="text-xl">{ICON.film}</span>
         </div>
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -125,7 +126,7 @@ export function ScriptChat({ reportId, scriptText }: ScriptChatProps) {
         {messages.length === 0 && (
           <div className="text-center py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 mb-4">
-              <span className="text-3xl">💬</span>
+              <span className="text-3xl">{ICON.chat}</span>
             </div>
             <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
               Start a conversation

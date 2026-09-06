@@ -1,6 +1,7 @@
 "use client";
 
 import type { AgentResult } from "@/lib/types";
+import ICON from "@/components/icons";
 
 interface LegalPanelProps {
   agentResult: AgentResult | null;
@@ -71,7 +72,7 @@ export function LegalPanel({ agentResult }: LegalPanelProps) {
       {copyrightRisks.length > 0 && (
         <div>
           <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
-            <span>©️</span> Copyright Risks ({copyrightRisks.length})
+            <span>{ICON.tag}</span> Copyright Risks ({copyrightRisks.length})
           </h3>
           <div className="space-y-2">
             {copyrightRisks.map((risk: { title?: string; description?: string; details?: string; estimated_cost?: number }, i: number) => (
@@ -100,7 +101,7 @@ export function LegalPanel({ agentResult }: LegalPanelProps) {
       {trademarkIssues.length > 0 && (
         <div>
           <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
-            <span>™️</span> Trademark Issues ({trademarkIssues.length})
+            <span>{ICON.tag}</span> Trademark Issues ({trademarkIssues.length})
           </h3>
           <div className="space-y-2">
             {trademarkIssues.map((issue: { title?: string; description?: string; details?: string }, i: number) => (
@@ -126,7 +127,7 @@ export function LegalPanel({ agentResult }: LegalPanelProps) {
       {privacyConcerns.length > 0 && (
         <div>
           <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
-            <span>🔒</span> Privacy Concerns ({privacyConcerns.length})
+            <span>{ICON.lock}</span> Privacy Concerns ({privacyConcerns.length})
           </h3>
           <div className="space-y-2">
             {privacyConcerns.map((concern: { title?: string; description?: string; details?: string }, i: number) => (
@@ -152,7 +153,7 @@ export function LegalPanel({ agentResult }: LegalPanelProps) {
       {clearanceRequired.length > 0 && (
         <div>
           <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
-            <span>📋</span> Clearance Required ({clearanceRequired.length})
+            <span>{ICON.clipboard}</span> Clearance Required ({clearanceRequired.length})
           </h3>
           <ul className="space-y-1">
             {clearanceRequired.map((item: string | { title?: string; description?: string }, i: number) => (
@@ -193,7 +194,7 @@ export function LegalPanel({ agentResult }: LegalPanelProps) {
       {/* No issues */}
       {totalIssues === 0 && (
         <div className="py-8 text-center">
-          <span className="text-4xl">✅</span>
+          <span className="text-4xl">{ICON.check}</span>
           <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
             No legal issues detected. The script appears clear for production.
           </p>

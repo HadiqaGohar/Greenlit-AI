@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Users, Link2, Star } from "lucide-react";
+import ICON from "@/components/icons";
 import {
   generateRelationshipGraph,
   type RelationshipResponse,
@@ -106,7 +107,7 @@ export function CharacterRelationshipPanel({ reportId }: CharacterRelationshipPa
             className="px-3 py-1.5 rounded-lg text-sm font-medium"
             style={{ backgroundColor: "var(--bg)", color: "var(--text)", border: "1px solid var(--border)" }}
           >
-            🔄 Re-generate
+            {ICON.refresh} Re-generate
           </button>
         )}
       </div>

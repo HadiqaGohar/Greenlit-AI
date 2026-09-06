@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import type { Suggestion } from "@/lib/types";
+import ICON from "@/components/icons";
 
-const typeIcons: Record<string, string> = {
-  factual: "🔍",
-  legal: "⚖️",
-  trademark: "™️",
-  continuity: "🔗",
+const typeIcons: Record<string, React.ReactNode> = {
+  factual: ICON.search,
+  legal: ICON.shield,
+  trademark: ICON.tag,
+  continuity: ICON.link,
 };
 
 const severityColors: Record<string, string> = {
@@ -62,7 +63,7 @@ export function SuggestionCard({ suggestions }: SuggestionCardProps) {
                 className="flex w-full items-center justify-between p-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <span>{typeIcons[sug.issue_type] || "⚠️"}</span>
+                  <span>{typeIcons[sug.issue_type] || ICON.alert}</span>
                   <span className="text-sm font-medium text-gray-900 dark:text-white truncate max-w-[300px]">
                     {sug.original_text.slice(0, 80)}
                     {sug.original_text.length > 80 ? "..." : ""}

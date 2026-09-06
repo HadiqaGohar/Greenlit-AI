@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReviewStatus } from "@/lib/types";
+import ICON from "@/components/icons";
 
 interface ReviewStatusPanelProps {
   reviews: ReviewStatus[];
@@ -9,11 +10,11 @@ interface ReviewStatusPanelProps {
   onUpdateStatus: (reviewId: string, status: string, comments?: string) => Promise<void>;
 }
 
-const statusConfig: Record<string, { label: string; color: string; icon: string }> = {
-  pending: { label: "Pending", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200", icon: "⏳" },
-  approved: { label: "Approved", color: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200", icon: "✅" },
-  rejected: { label: "Rejected", color: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200", icon: "❌" },
-  needs_changes: { label: "Needs Changes", color: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200", icon: "🔄" },
+const statusConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
+  pending: { label: "Pending", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200", icon: ICON.clock },
+  approved: { label: "Approved", color: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200", icon: ICON.check },
+  rejected: { label: "Rejected", color: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200", icon: ICON.cross },
+  needs_changes: { label: "Needs Changes", color: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200", icon: ICON.refresh },
 };
 
 export function ReviewStatusPanel({

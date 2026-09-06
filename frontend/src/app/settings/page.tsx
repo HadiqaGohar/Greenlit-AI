@@ -10,6 +10,7 @@ import {
   removeWatchFolder,
   getAutomationStatus,
 } from "@/lib/api";
+import { ICONS } from "@/components/icons";
 import { useAuth } from "@/contexts/AuthContext";
 import type { NotificationSettings, WatchedFolder } from "@/lib/types";
 
@@ -136,7 +137,7 @@ export default function SettingsPage() {
               : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           }`}
         >
-          🔔 Notifications
+          <span className="mr-1.5">{ICONS.megaphone}</span> Notifications
         </button>
         <button
           onClick={() => setActiveTab("automation")}
@@ -146,7 +147,7 @@ export default function SettingsPage() {
               : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           }`}
         >
-          ⚙️ File Monitoring
+          <span className="mr-1.5">{ICONS.settings}</span> File Monitoring
         </button>
       </div>
 
@@ -384,7 +385,7 @@ export default function SettingsPage() {
                     className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3 dark:bg-gray-800/50"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-lg">📁</span>
+                      <span className="text-lg">{ICONS.document}</span>
                       <div>
                         <p className="text-sm font-medium text-gray-900 dark:text-gray-100 font-mono">
                           {folder.folder_path}

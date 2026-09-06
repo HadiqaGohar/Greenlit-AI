@@ -2,6 +2,8 @@
  * Utility functions for the frontend
  */
 
+import { AGENT_ICONS } from "@/components/icons";
+
 /**
  * Get color for risk score
  */
@@ -175,19 +177,8 @@ export function timeAgo(dateString: string): string {
 /**
  * Get icon for agent type
  */
-export function getAgentIcon(agent: string): string {
-  const iconMap: Record<string, string> = {
-    director: "🎬",
-    research: "🔍",
-    legal: "⚖️",
-    continuity: "🔗",
-    storyboard: "🖼️",
-    tts: "🎙️",
-    schedule: "📅",
-    stakeholder: "🏢",
-    "risk-dashboard": "📊",
-  };
-  return iconMap[agent] || "🤖";
+export function getAgentIcon(agent: string): React.ReactNode {
+  return AGENT_ICONS[agent] || AGENT_ICONS.director;
 }
 
 /**

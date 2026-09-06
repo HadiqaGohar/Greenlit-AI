@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import type { AgentTimelineStep } from "@/lib/types";
+import { AGENT_ICONS, ICONS } from "@/components/icons";
 
-const agentIcons: Record<string, string> = {
-  director: "🎬",
-  research: "🔍",
-  legal: "⚖️",
-  continuity: "🔗",
+const agentIcons: Record<string, React.ReactNode> = {
+  director: AGENT_ICONS.director,
+  research: AGENT_ICONS.research,
+  legal: AGENT_ICONS.legal,
+  continuity: AGENT_ICONS.continuity,
 };
 
 const agentLabels: Record<string, string> = {
@@ -88,7 +89,7 @@ export function AgentReplay({ timeline, totalProcessingTime }: AgentReplayProps)
               onClick={handlePlay}
               className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
             >
-              ▶ Play
+              <span className="flex items-center gap-1">{ICONS.play} Play</span>
             </button>
           )}
           {activeStep >= 0 && (
@@ -96,7 +97,7 @@ export function AgentReplay({ timeline, totalProcessingTime }: AgentReplayProps)
               onClick={handleReset}
               className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
             >
-              ↺ Reset
+              <span className="flex items-center gap-1">{ICONS.refresh} Reset</span>
             </button>
           )}
         </div>

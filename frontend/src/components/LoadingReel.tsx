@@ -1,3 +1,5 @@
+import ICON from "@/components/icons";
+
 export function LoadingReel({
   message = "Researching claims...",
 }: {
@@ -9,7 +11,7 @@ export function LoadingReel({
         <div className="absolute inset-0 rounded-full border-2 border-charcoal-light" />
         <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-r-amber/40 border-t-amber" />
         <div className="absolute inset-2 flex items-center justify-center text-xl">
-          🎞️
+          {ICON.film}
         </div>
       </div>
       <div className="text-center">

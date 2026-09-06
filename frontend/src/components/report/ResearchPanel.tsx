@@ -1,6 +1,7 @@
 "use client";
 
 import type { AgentResult, Claim } from "@/lib/types";
+import ICON from "@/components/icons";
 
 interface ResearchPanelProps {
   agentResult: AgentResult | null;
@@ -53,7 +54,7 @@ export function ResearchPanel({ agentResult, claims }: ResearchPanelProps) {
       {/* Parallel Search Badge Banner */}
       <div className="flex items-center justify-between rounded-lg border border-blue-500/30 bg-blue-500/10 px-4 py-3 text-xs text-blue-300">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-blue-400">⚡ Live Web Grounding:</span>
+          <span className="font-semibold text-blue-400">{ICON.bolt} Live Web Grounding:</span>
           <span>Verified via Parallel Search API & Google Cloud Agent Builder</span>
         </div>
         <span className="rounded bg-blue-500/20 px-2 py-0.5 font-mono text-[10px] text-blue-200">
@@ -63,10 +64,10 @@ export function ResearchPanel({ agentResult, claims }: ResearchPanelProps) {
 
       {/* Summary stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <StatBox label="Verified" value={verifiedCount} color="green" icon="✅" />
-        <StatBox label="Flagged" value={flaggedCount} color="red" icon="🚩" />
-        <StatBox label="Uncertain" value={uncertainCount} color="amber" icon="❓" />
-        <StatBox label="Sources Found" value={sourcesFound} color="blue" icon="📚" />
+        <StatBox label="Verified" value={verifiedCount} color="green" icon={ICON.check} />
+        <StatBox label="Flagged" value={flaggedCount} color="red" icon={ICON.alert} />
+        <StatBox label="Uncertain" value={uncertainCount} color="amber" icon={ICON.question} />
+        <StatBox label="Sources Found" value={sourcesFound} color="blue" icon={ICON.newspaper} />
       </div>
 
       {/* Claims by type */}
@@ -176,7 +177,7 @@ function StatBox({
   label: string;
   value: number;
   color: string;
-  icon: string;
+  icon: React.ReactNode;
 }) {
   const colorMap: Record<string, string> = {
     green: "border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20",

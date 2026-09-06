@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ICON from "@/components/icons";
 
 interface SceneRisk {
   scene_number: number;
@@ -358,7 +359,7 @@ export function RiskHeatmap({ reportId, scriptText }: RiskHeatmapProps) {
                             key={i}
                             className="text-gray-600 dark:text-gray-300 flex items-start gap-2"
                           >
-                            <span className="text-orange-500 mt-1">⚖️</span>
+                            <span className="text-orange-500 mt-1">{ICON.shield}</span>
                             {issue.description || issue.type || "Legal issue"}
                           </li>
                         ))}
@@ -378,7 +379,7 @@ export function RiskHeatmap({ reportId, scriptText }: RiskHeatmapProps) {
                             key={i}
                             className="text-gray-600 dark:text-gray-300 flex items-start gap-2"
                           >
-                            <span className="text-yellow-500 mt-1">🔄</span>
+                            <span className="text-yellow-500 mt-1">{ICON.refresh}</span>
                             {issue.description || "Continuity issue"}
                           </li>
                         ))}
@@ -398,7 +399,7 @@ export function RiskHeatmap({ reportId, scriptText }: RiskHeatmapProps) {
                             key={i}
                             className="text-gray-600 dark:text-gray-300 flex items-start gap-2"
                           >
-                            <span className="text-red-500 mt-1">🔍</span>
+                            <span className="text-red-500 mt-1">{ICON.search}</span>
                             {flag.text || "Flagged claim"}
                           </li>
                         ))}
@@ -420,7 +421,7 @@ export function RiskHeatmap({ reportId, scriptText }: RiskHeatmapProps) {
             ) : (
               <div className="text-center py-8">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 mb-3">
-                  <span className="text-2xl">👆</span>
+                  <span className="text-2xl">{ICON.eye}</span>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Click on a highlighted scene to see detailed risk analysis

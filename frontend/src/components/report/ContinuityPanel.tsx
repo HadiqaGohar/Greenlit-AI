@@ -1,6 +1,7 @@
 "use client";
 
 import type { AgentResult } from "@/lib/types";
+import ICON from "@/components/icons";
 
 interface ContinuityPanelProps {
   agentResult: AgentResult | null;
@@ -70,7 +71,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
         {/* Character Inconsistencies */}
         <IssueSection
           title="Character Inconsistencies"
-          icon="👤"
+          icon={ICON.user}
           issues={characterIssues}
           color="red"
         />
@@ -78,7 +79,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
         {/* Timeline Issues */}
         <IssueSection
           title="Timeline Issues"
-          icon="⏰"
+          icon={ICON.clock}
           issues={timelineIssues}
           color="amber"
         />
@@ -86,7 +87,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
         {/* Location Continuity */}
         <IssueSection
           title="Location Continuity"
-          icon="📍"
+          icon={ICON.mapPin}
           issues={locationIssues}
           color="purple"
         />
@@ -94,7 +95,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
         {/* Prop Tracking */}
         <IssueSection
           title="Prop Tracking"
-          icon="🎭"
+          icon={ICON.film}
           issues={propIssues}
           color="teal"
         />
@@ -104,7 +105,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
       {dialogueConsistency.length > 0 && (
         <div>
           <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
-            <span>💬</span> Dialogue Consistency ({dialogueConsistency.length})
+            <span>{ICON.chat}</span> Dialogue Consistency ({dialogueConsistency.length})
           </h3>
           <div className="space-y-2">
               {dialogueConsistency.map((issue: ContinuityIssue, i: number) => (
@@ -151,7 +152,7 @@ export function ContinuityPanel({ agentResult }: ContinuityPanelProps) {
       {/* No issues */}
       {totalIssues === 0 && dialogueConsistency.length === 0 && (
         <div className="py-8 text-center">
-          <span className="text-4xl">✅</span>
+          <span className="text-4xl">{ICON.check}</span>
           <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
             No continuity issues detected. All scenes, characters, and timelines are consistent.
           </p>
@@ -168,7 +169,7 @@ function IssueSection({
   color,
 }: {
   title: string;
-  icon: string;
+  icon: React.ReactNode;
   issues: ContinuityIssue[];
   color: string;
 }) {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MapPin, FileCheck, DollarSign, Plane, ExternalLink, Sparkles } from "lucide-react";
+import ICON from "@/components/icons";
 import { generateLocationMatches, type LocationMatchResponse, type LocationMatch } from "@/lib/api";
 
 interface LocationMatchPanelProps {
@@ -57,7 +58,7 @@ export function LocationMatchPanel({ reportId }: LocationMatchPanelProps) {
             className="px-3 py-1.5 rounded-lg text-sm font-medium"
             style={{ backgroundColor: "var(--bg)", color: "var(--text)", border: "1px solid var(--border)" }}
           >
-            🔄 Re-scout
+            {ICON.refresh} Re-scout
           </button>
         )}
       </div>

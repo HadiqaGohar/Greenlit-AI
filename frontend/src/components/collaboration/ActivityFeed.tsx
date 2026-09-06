@@ -1,6 +1,7 @@
 "use client";
 
 import type { ActivityItem } from "@/lib/types";
+import ICON from "@/components/icons";
 
 interface ActivityFeedProps {
   activities: ActivityItem[];
@@ -10,15 +11,15 @@ interface ActivityFeedProps {
 function activityIcon(type: string) {
   switch (type) {
     case "comment":
-      return "💬";
+      return ICON.chat;
     case "review":
-      return "📋";
+      return ICON.clipboard;
     case "status_change":
-      return "🔄";
+      return ICON.refresh;
     case "member_added":
-      return "👤";
+      return ICON.user;
     default:
-      return "📌";
+      return ICON.mapPin;
   }
 }
 
