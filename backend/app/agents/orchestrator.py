@@ -440,12 +440,13 @@ class AgentOrchestrator:
         # Individual agent timeouts: Research gets more time (Parallel API), others get less
         AGENT_TIMEOUTS = {
             "research": 300.0,   # 5 min for Parallel API deep research
-            "legal": 90.0,       # Legal agent uses Gemini (fast)
-            "continuity": 90.0,  # Continuity agent uses Gemini (fast)
+            "legal": 180.0,      # Legal agent uses Gemini (3 min with retries)
+            "continuity": 180.0, # Continuity agent uses Gemini (3 min with retries)
+            "director": 180.0,   # Director agent uses Gemini (3 min with retries)
         }
         
         async def run_agent(task: AgentTask) -> tuple:
-            agent_timeout = AGENT_TIMEOUTS.get(task.agent_type, 90.0)
+            agent_timeout = AGENT_TIMEOUTS.get(task.agent_type, 180.0)
             try:
                 if task.agent_type == "research":
                     result = await asyncio.wait_for(
