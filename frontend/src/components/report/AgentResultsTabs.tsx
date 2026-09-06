@@ -16,6 +16,22 @@ import { CharacterRelationshipPanel } from "./CharacterRelationshipPanel";
 import { ScriptComparePanel } from "./ScriptComparePanel";
 import { PitchDeckPanel } from "./PitchDeckPanel";
 import { LocationMatchPanel } from "./LocationMatchPanel";
+import {
+  HiOutlineChartBar,
+  HiOutlineMagnifyingGlass,
+  HiOutlineShieldCheck,
+  HiOutlineLink,
+  HiOutlineFilm,
+  HiOutlineMicrophone,
+  HiOutlineCalendarDays,
+  HiOutlineUsers,
+  HiOutlineExclamationTriangle,
+  HiOutlineCurrencyDollar,
+  HiOutlineArrowPath,
+  HiOutlineArrowsRightLeft,
+  HiOutlinePresentationChartLine,
+  HiOutlineMapPin,
+} from "react-icons/hi2";
 
 type Tab = "overview" | "research" | "legal" | "continuity" | "storyboard" | "table-read" | "schedule" | "stakeholders" | "risk-dashboard" | "budget" | "relationships" | "script-compare" | "pitch-deck" | "locations";
 
@@ -31,21 +47,21 @@ interface AgentResultsTabsProps {
   reportId?: string;
 }
 
-const tabs: { key: Tab; label: string; icon: string }[] = [
-  { key: "overview", label: "Overview", icon: "📊" },
-  { key: "research", label: "Research", icon: "🔍" },
-  { key: "legal", label: "Legal", icon: "⚖️" },
-  { key: "continuity", label: "Continuity", icon: "🔗" },
-  { key: "storyboard", label: "Storyboard", icon: "🎬" },
-  { key: "table-read", label: "Table Read", icon: "🎙️" },
-  { key: "schedule", label: "Schedule", icon: "📅" },
-  { key: "stakeholders", label: "Stakeholders", icon: "🏢" },
-  { key: "risk-dashboard", label: "📊 Risk Dashboard", icon: "📊" },
-  { key: "budget", label: "💰 Budget", icon: "💰" },
-  { key: "relationships", label: "🕸️ Relationships", icon: "🕸️" },
-  { key: "script-compare", label: "🔍 Compare", icon: "🔍" },
-  { key: "pitch-deck", label: "📊 Pitch Deck", icon: "📊" },
-  { key: "locations", label: "📍 Locations", icon: "📍" },
+const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
+  { key: "overview", label: "Overview", icon: <HiOutlineChartBar size={18} /> },
+  { key: "research", label: "Research", icon: <HiOutlineMagnifyingGlass size={18} /> },
+  { key: "legal", label: "Legal", icon: <HiOutlineShieldCheck size={18} /> },
+  { key: "continuity", label: "Continuity", icon: <HiOutlineLink size={18} /> },
+  { key: "storyboard", label: "Storyboard", icon: <HiOutlineFilm size={18} /> },
+  { key: "table-read", label: "Table Read", icon: <HiOutlineMicrophone size={18} /> },
+  { key: "schedule", label: "Schedule", icon: <HiOutlineCalendarDays size={18} /> },
+  { key: "stakeholders", label: "Stakeholders", icon: <HiOutlineUsers size={18} /> },
+  { key: "risk-dashboard", label: "Risk Dashboard", icon: <HiOutlineExclamationTriangle size={18} /> },
+  { key: "budget", label: "Budget", icon: <HiOutlineCurrencyDollar size={18} /> },
+  { key: "relationships", label: "Relationships", icon: <HiOutlineArrowPath size={18} /> },
+  { key: "script-compare", label: "Compare", icon: <HiOutlineArrowsRightLeft size={18} /> },
+  { key: "pitch-deck", label: "Pitch Deck", icon: <HiOutlinePresentationChartLine size={18} /> },
+  { key: "locations", label: "Locations", icon: <HiOutlineMapPin size={18} /> },
 ];
 
 export function AgentResultsTabs({
@@ -60,6 +76,9 @@ export function AgentResultsTabs({
   reportId,
 }: AgentResultsTabsProps) {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
+
+  const hidePanel = { display: "none" };
+  const showPanel = { display: "block" };
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
@@ -77,16 +96,16 @@ export function AgentResultsTabs({
                   : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
               }`}
             >
-              <span>{tab.icon}</span>
+              {tab.icon}
               <span>{tab.label}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Tab content */}
+      {/* Tab content - all panels rendered, hidden/shown via CSS to preserve state */}
       <div className="p-5">
-        {activeTab === "overview" && (
+        <div style={activeTab === "overview" ? showPanel : hidePanel}>
           <OverviewPanel
             riskScore={riskScore}
             riskLevel={riskLevel}
@@ -96,91 +115,100 @@ export function AgentResultsTabs({
             processingTime={processingTime}
             claimsCount={claimsCount}
           />
-        )}
-        {activeTab === "research" && (
+        </div>
+        <div style={activeTab === "research" ? showPanel : hidePanel}>
           <ResearchPanel agentResult={agentResults.research ?? null} claims={claims} />
-        )}
-        {activeTab === "legal" && (
+        </div>
+        <div style={activeTab === "legal" ? showPanel : hidePanel}>
           <LegalPanel agentResult={agentResults.legal ?? null} />
-        )}
-        {activeTab === "continuity" && (
+        </div>
+        <div style={activeTab === "continuity" ? showPanel : hidePanel}>
           <ContinuityPanel agentResult={agentResults.continuity ?? null} />
-        )}
-        {activeTab === "storyboard" && reportId && (
-          <StoryboardPanel reportId={reportId} />
-        )}
-        {activeTab === "storyboard" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for storyboard generation
-          </div>
-        )}
-        {activeTab === "table-read" && reportId && (
-          <TableReadPanel reportId={reportId} />
-        )}
-        {activeTab === "table-read" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for table read generation
-          </div>
-        )}
-        {activeTab === "schedule" && reportId && (
-          <SchedulePanel reportId={reportId} />
-        )}
-        {activeTab === "schedule" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for schedule generation
-          </div>
-        )}
-        {activeTab === "stakeholders" && reportId && (
-          <StakeholderPanel reportId={reportId} />
-        )}
-        {activeTab === "stakeholders" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for stakeholder analysis
-          </div>
-        )}
-        {activeTab === "risk-dashboard" && reportId && (
-          <RiskDashboard reportId={reportId} />
-        )}
-        {activeTab === "risk-dashboard" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for risk dashboard
-          </div>
-        )}
-        {activeTab === "budget" && reportId && (
-          <BudgetTrackerPanel reportId={reportId} />
-        )}
-        {activeTab === "budget" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for budget tracking
-          </div>
-        )}
-        {activeTab === "relationships" && reportId && (
-          <CharacterRelationshipPanel reportId={reportId} />
-        )}
-        {activeTab === "relationships" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for relationship graph
-          </div>
-        )}
-        {activeTab === "script-compare" && (
+        </div>
+        <div style={activeTab === "storyboard" ? showPanel : hidePanel}>
+          {reportId ? (
+            <StoryboardPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for storyboard generation
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "table-read" ? showPanel : hidePanel}>
+          {reportId ? (
+            <TableReadPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for table read generation
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "schedule" ? showPanel : hidePanel}>
+          {reportId ? (
+            <SchedulePanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for schedule generation
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "stakeholders" ? showPanel : hidePanel}>
+          {reportId ? (
+            <StakeholderPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for stakeholder analysis
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "risk-dashboard" ? showPanel : hidePanel}>
+          {reportId ? (
+            <RiskDashboard reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for risk dashboard
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "budget" ? showPanel : hidePanel}>
+          {reportId ? (
+            <BudgetTrackerPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for budget tracking
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "relationships" ? showPanel : hidePanel}>
+          {reportId ? (
+            <CharacterRelationshipPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for relationship graph
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "script-compare" ? showPanel : hidePanel}>
           <ScriptComparePanel reportId={reportId} />
-        )}
-        {activeTab === "pitch-deck" && reportId && (
-          <PitchDeckPanel reportId={reportId} />
-        )}
-        {activeTab === "pitch-deck" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for pitch deck
-          </div>
-        )}
-        {activeTab === "locations" && reportId && (
-          <LocationMatchPanel reportId={reportId} />
-        )}
-        {activeTab === "locations" && !reportId && (
-          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-            Report ID required for location matching
-          </div>
-        )}
+        </div>
+        <div style={activeTab === "pitch-deck" ? showPanel : hidePanel}>
+          {reportId ? (
+            <PitchDeckPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for pitch deck
+            </div>
+          )}
+        </div>
+        <div style={activeTab === "locations" ? showPanel : hidePanel}>
+          {reportId ? (
+            <LocationMatchPanel reportId={reportId} />
+          ) : (
+            <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+              Report ID required for location matching
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

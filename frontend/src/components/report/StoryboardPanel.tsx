@@ -67,14 +67,14 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
   const failedFrames = storyboard?.frames.filter((f) => !f.image_base64) || [];
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-900">
+    <div className="rounded-xl border border-gray-700 bg-gray-900 p-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-white">
             🎬 AI Storyboard
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-400">
             Cinematic visuals generated for each scene using Imagen 4
           </p>
         </div>
@@ -89,7 +89,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
         {storyboard && (
           <button
             onClick={generateStoryboard}
-            className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+            className="rounded-lg border border-gray-600 bg-gray-800 px-3 py-1.5 text-sm font-medium text-gray-300 hover:bg-gray-700"
           >
             🔄 Regenerate
           </button>
@@ -99,17 +99,17 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
       {/* Loading State */}
       {loading && (
         <div className="py-12 text-center">
-          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-purple-200 border-t-purple-600" />
+          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-purple-900/30">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-purple-700 border-t-purple-400" />
           </div>
-          <p className="text-sm font-medium text-gray-900 dark:text-white">
+          <p className="text-sm font-medium text-white">
             Generating storyboard frames...
           </p>
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          <p className="mt-1 text-xs text-gray-400">
             This may take 30-120 seconds depending on scene count
           </p>
           <div className="mt-4 mx-auto max-w-xs">
-            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-700">
               <div className="h-full w-2/3 animate-pulse rounded-full bg-gradient-to-r from-purple-500 to-blue-500" />
             </div>
           </div>
@@ -118,8 +118,8 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
 
       {/* Error State */}
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
-          <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+        <div className="rounded-lg border border-red-800 bg-red-900/20 p-4">
+          <p className="text-sm text-red-200">{error}</p>
           <button
             onClick={generateStoryboard}
             className="mt-2 text-xs font-medium text-red-600 hover:text-red-800 dark:text-red-400"
@@ -134,15 +134,15 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
         <div>
           {/* Stats Bar */}
           <div className="mb-6 flex items-center gap-4 text-sm">
-            <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+            <span className="flex items-center gap-1.5 text-gray-400">
               🖼️ <strong>{storyboard.successful_frames}</strong> frames generated
             </span>
             {storyboard.failed_frames > 0 && (
-              <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+              <span className="flex items-center gap-1.5 text-amber-400">
                 ⚠️ <strong>{storyboard.failed_frames}</strong> failed
               </span>
             )}
-            <span className="text-gray-400 dark:text-gray-500">
+            <span className="text-gray-500">
               ⏱️ {storyboard.processing_time.toFixed(1)}s
             </span>
           </div>
@@ -150,7 +150,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
           {/* Empty State */}
           {successfulFrames.length === 0 && !loading && (
             <div className="py-8 text-center">
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-400">
                 No storyboard frames were generated. Try again or check the script content.
               </p>
             </div>
@@ -172,7 +172,7 @@ export function StoryboardPanel({ reportId }: StoryboardPanelProps) {
           {/* Failed Frames */}
           {failedFrames.length > 0 && (
             <div className="mt-6">
-              <h4 className="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+              <h4 className="mb-3 text-sm font-medium text-gray-400">
                 Failed Frames
               </h4>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -206,7 +206,7 @@ function StoryboardCard({
   return (
     <div
       onClick={onClick}
-      className="group cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-gray-50 transition-all hover:shadow-lg hover:border-purple-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-purple-600"
+      className="group cursor-pointer overflow-hidden rounded-xl border border-gray-700 bg-gray-800 transition-all hover:shadow-lg hover:border-purple-600"
     >
       {/* Image */}
       <div className="relative aspect-video overflow-hidden bg-gray-900">
@@ -235,13 +235,13 @@ function StoryboardCard({
 
       {/* Info */}
       <div className="p-3">
-        <h4 className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+        <h4 className="text-sm font-semibold text-white truncate">
           {frame.title}
         </h4>
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+        <p className="mt-1 text-xs text-gray-400 line-clamp-2">
           {frame.description}
         </p>
-        <div className="mt-2 flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
+        <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
           <span>📷 {frame.camera_angle}</span>
         </div>
       </div>
@@ -251,16 +251,16 @@ function StoryboardCard({
 
 function FailedFrameCard({ frame }: { frame: StoryboardFrame }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
+    <div className="overflow-hidden rounded-xl border border-amber-800 bg-amber-900/20 p-4">
       <div className="flex items-start gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/50">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-900/50">
           <span className="text-sm">⚠️</span>
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm font-medium text-amber-800 dark:text-amber-200">
+          <h4 className="text-sm font-medium text-amber-200">
             Scene {frame.scene_number}: {frame.title}
           </h4>
-          <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">
+          <p className="mt-1 text-xs text-amber-400">
             {frame.generation_error}
           </p>
         </div>
@@ -314,7 +314,7 @@ function LightboxModal({
               <h3 className="text-lg font-bold text-white">
                 Scene {frame.scene_number}: {frame.title}
               </h3>
-              <p className="mt-1 text-sm text-gray-400">{frame.description}</p>
+              <p className="mt-1 text-sm text-gray-300">{frame.description}</p>
             </div>
             <div className="flex items-center gap-2 text-xs">
               <span className="rounded-full bg-purple-600/30 px-2.5 py-1 text-purple-300 capitalize">
@@ -328,10 +328,10 @@ function LightboxModal({
 
           {/* Visual Prompt (collapsible) */}
           <details className="mt-4 group">
-            <summary className="cursor-pointer text-xs font-medium text-gray-500 hover:text-gray-300 transition-colors">
+            <summary className="cursor-pointer text-xs font-medium text-gray-400 hover:text-gray-200 transition-colors">
               📝 Visual Prompt Used
             </summary>
-            <p className="mt-2 rounded-lg bg-gray-800 p-3 text-xs text-gray-400 leading-relaxed">
+            <p className="mt-2 rounded-lg bg-gray-800 p-3 text-xs text-gray-300 leading-relaxed">
               {frame.visual_prompt}
             </p>
           </details>
