@@ -14,6 +14,8 @@ def _parse_cors_origins() -> List[str]:
     raw = os.environ.get("CORS_ORIGINS", "")
     if not raw:
         return ["http://localhost:3000", "http://127.0.0.1:3000"]
+    if raw.strip() == "*":
+        return ["*"]
     try:
         parsed = json.loads(raw)
         if isinstance(parsed, list):

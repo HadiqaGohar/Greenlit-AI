@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 function generateUid(email: string): string {
   let hash = 0;
@@ -108,28 +109,57 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
+    googleLogout();
     localStorage.removeItem('user');
     setUser(null);
   };
 
+  const googleLogin = useGoogleLogin({
+    flow: 'implicit',
+    onSuccess: async (tokenResponse) => {
+      setLoading(true);
+      try {
+        const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        });
+        const profile = await res.json();
+
+        const email = profile.email || '';
+        const displayName = profile.name || email.split('@')[0];
+        const photoURL = profile.picture || '';
+
+        const users = getRegisteredUsers();
+        let found = users.find(u => u.email === email);
+
+        if (!found) {
+          const uid = generateUid(email);
+          found = { email, password: 'google_auth', uid };
+          users.push(found);
+          saveRegisteredUsers(users);
+        }
+
+        const loggedInUser: User = {
+          uid: found.uid,
+          email,
+          displayName,
+          photoURL,
+        };
+        localStorage.setItem('user', JSON.stringify(loggedInUser));
+        setUser(loggedInUser);
+      } finally {
+        setLoading(false);
+      }
+    },
+    onError: () => {
+      setLoading(false);
+    },
+  });
+
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
-      const email = 'user@google.com';
-      const users = getRegisteredUsers();
-      let found = users.find(u => u.email === email);
-
-      if (!found) {
-        const uid = generateUid(email);
-        found = { email, password: 'google_auth', uid };
-        users.push(found);
-        saveRegisteredUsers(users);
-      }
-
-      const loggedInUser: User = { uid: found.uid, email: found.email, displayName: 'Google User' };
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
-      setUser(loggedInUser);
-    } finally {
+      googleLogin();
+    } catch {
       setLoading(false);
     }
   };

@@ -91,10 +91,11 @@ app = FastAPI(
 )
 
 # Add CORS middleware
+allow_creds = CORS_ORIGINS != ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
-    allow_credentials=True,
+    allow_credentials=allow_creds,
     allow_methods=["*"],
     allow_headers=["*"],
 )
