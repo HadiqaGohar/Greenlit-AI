@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # Fallback models if primary is overloaded
 FALLBACK_MODELS = [
     "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
+    "gemini-3.1-flash-lite",
 ]
 
 MAX_RETRIES = 3
